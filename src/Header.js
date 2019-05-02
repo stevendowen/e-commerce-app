@@ -9,7 +9,7 @@ const Header = () => {
         Home
       </Link>
       <div className="right item">
-        <i className="large floated left cart icon" />
+        <i className="large cart icon" />
         <div className="ui icon input">
           <input type="text" placeholder="Search..." />
           <i className="search icon" />

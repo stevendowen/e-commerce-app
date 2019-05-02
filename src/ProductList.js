@@ -15,10 +15,18 @@ class ProductList extends Component {
       });
   }
 
+  handleClick(id) {
+    console.log(this.props);
+    this.props.history.push('/products/' + id);
+  }
+
   render() {
     return this.state.products.map((product, idx) => (
-      <div className="ui centered cards">
-        <div className="ui raised link card" key={idx}>
+      <div className="ui centered cards" key={idx}>
+        <div
+          className="ui raised link card"
+          onClick={() => this.handleClick(product.id)}
+        >
           <div className="ui centered small images">
             <img alt={product.title} src={product.img} />
           </div>
