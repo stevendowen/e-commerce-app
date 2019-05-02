@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import ProductList from './ProductList';
+
 class App extends Component {
   state = {
     products: [],
@@ -15,33 +17,6 @@ class App extends Component {
       });
   }
 
-  renderProducts() {
-    return this.state.products.map((product, idx) => (
-      <div className="ui raised link card" key={idx}>
-        <div className="ui centered small image">
-          <img alt={product.title} src={product.img} />
-        </div>
-        <div className="content">
-          <div className="center aligned header">{product.title}</div>
-          <div className="meta">{product.category.toUpperCase()}</div>
-          <div className="center aligned description">
-            {product.description}
-          </div>
-        </div>
-        <div className="extra content">
-          <span className="right floated star">
-            <i className="star icon" />
-            Favorite
-          </span>
-          <span className="floated star">
-            <i className="cart icon" />
-            Add To Cart
-          </span>
-        </div>
-      </div>
-    ));
-  }
-
   render() {
     return (
       <div>
@@ -55,7 +30,9 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <div className="ui centered cards">{this.renderProducts()}</div>
+        <div className="ui centered cards">
+          <ProductList products={this.state.products} />
+        </div>
       </div>
     );
   }
