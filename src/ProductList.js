@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class ProductList extends React.Component {
+class ProductList extends Component {
   state = {
     products: [],
   };
