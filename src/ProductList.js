@@ -1,27 +1,15 @@
 import React, { Component } from 'react';
 
+import store from './store';
+
 class ProductList extends Component {
-  state = {
-    products: [],
-  };
-
-  componentDidMount() {
-    fetch('https://my-json-server.typicode.com/tdmichaelis/typicode/products')
-      .then(response => {
-        return response.json();
-      })
-      .then(myJson => {
-        this.setState({ products: myJson });
-      });
-  }
-
   handleClick(id) {
     console.log(this.props);
     this.props.history.push('/products/' + id);
   }
 
   render() {
-    return this.state.products.map((product, idx) => (
+    return store.getState().products.map((product, idx) => (
       <div className="ui centered cards" key={idx}>
         <div
           className="ui raised link card"
@@ -34,7 +22,12 @@ class ProductList extends Component {
             <div className="center aligned header">{product.title}</div>
             <div className="meta">{product.category.toUpperCase()}</div>
           </div>
-          <div className="extra content">
+          <div
+            className="extra content"
+            onClick={() => {
+              console.log('hit');
+            }}
+          >
             <span className="right floated star">
               <i className="star icon" />
               Favorite
