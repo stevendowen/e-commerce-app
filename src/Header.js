@@ -49,7 +49,7 @@ class Header extends Component {
           Home
         </Link>
         <div className="right item">
-          <Link style={{ marginRight: '10px' }} to="/cartList">
+          <Link style={{ marginRight: '10px' }} to="/wishList">
             {this.renderWishlist()}
           </Link>
           <Link style={{ marginRight: '10px' }} to="/cartList">

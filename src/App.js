@@ -6,6 +6,7 @@ import Header from './Header';
 import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
 import CartList from './CartList';
+import WishList from './WishList';
 
 class App extends Component {
   componentDidMount() {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/" component={ProductList} />
             <Route path="/products/:id" component={ProductDetail} />
             <Route path="/cartList" component={CartList} />
+            <Route path="/wishList" component={WishList} />
           </Switch>
         </div>
       </Router>
