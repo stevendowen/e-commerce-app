@@ -5,6 +5,7 @@ import store from './store';
 import Header from './Header';
 import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
+import CartList from './CartList';
 
 class App extends Component {
   componentDidMount() {
@@ -21,10 +22,13 @@ class App extends Component {
     return (
       <Router>
         <Header />
-        <Switch>
-          <Route exact path="/" component={ProductList} />
-          <Route path="/products/:id" component={ProductDetail} />
-        </Switch>
+        <div className="ui centered cards">
+          <Switch>
+            <Route exact path="/" component={ProductList} />
+            <Route path="/products/:id" component={ProductDetail} />
+            <Route path="/cartList" component={CartList} />
+          </Switch>
+        </div>
       </Router>
     );
   }
