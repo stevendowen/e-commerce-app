@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import store from './store';
-import Footer from './Footer';
 
 class ProductList extends Component {
   handleClick(id) {
