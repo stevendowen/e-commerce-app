@@ -57,20 +57,17 @@ class ProductDetail extends Component {
               </div>
             </div>
           </div>
-          <div className="extra content">
-            <button
-              className="right floated"
-              onClick={() => this.addWish(prod)}
-            >
-              <i className="heart icon" />
-              Add To Wish List
-            </button>
-            <button
-              className="left floated"
-              onClick={() => this.addProduct(prod)}
-            >
+          <div
+            className="ui center aligned container"
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <button onClick={() => this.addProduct(prod)}>
               <i className="cart icon" />
               Add To Cart
+            </button>
+            <button onClick={() => this.addWish(prod)}>
+              <i className="heart icon" />
+              Add To Wish List
             </button>
           </div>
         </div>

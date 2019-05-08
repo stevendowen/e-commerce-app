@@ -43,7 +43,15 @@ class CartList extends Component {
       return (
         <div>
           {this.renderCart()}
-          <div style={{ position: 'absolute', right: '20px' }}>
+          <div
+            style={{
+              position: 'absolute',
+              right: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column',
+            }}
+          >
             <button onClick={() => this.showTotal()}>Update</button>
             Cart Total: ${this.state.total}
           </div>
@@ -71,8 +79,7 @@ class CartList extends Component {
           </div>
           <Counter />
           <div style={{ position: 'absolute', bottom: '0', right: '20px' }}>
-            Total:
-            <div>${prod.price * store.getState().counter}</div>
+            Total: ${prod.price * store.getState().counter}
           </div>
         </div>
       );

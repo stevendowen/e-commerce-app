@@ -7,6 +7,7 @@ import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
 import CartList from './CartList';
 import WishList from './WishList';
+import Footer from './Footer';
 
 class App extends Component {
   componentDidMount() {
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/wishList" component={WishList} />
           </Switch>
         </div>
+        <Footer />
       </Router>
     );
   }
