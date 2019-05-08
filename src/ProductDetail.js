@@ -22,6 +22,13 @@ class ProductDetail extends Component {
     });
   }
 
+  addWish(product) {
+    store.dispatch({
+      type: 'ADD_WISH',
+      product: product,
+    });
+  }
+
   renderProduct() {
     return this.state.product.map((prod, idx) => {
       return (
@@ -43,16 +50,14 @@ class ProductDetail extends Component {
           </div>
           <div className="extra content">
             <button
-              className="right floated star"
-              onClick={() => {
-                console.log('favorite');
-              }}
+              className="right floated"
+              onClick={() => this.addWish(prod)}
             >
-              <i className="star icon" />
-              Favorite
+              <i className="heart icon" />
+              Add To Wish List
             </button>
             <button
-              className="floated cart"
+              className="left floated"
               onClick={() => this.addProduct(prod)}
             >
               <i className="cart icon" />

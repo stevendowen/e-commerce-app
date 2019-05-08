@@ -1,15 +1,41 @@
 import React, { Component } from 'react';
 
 import store from './store';
+import Counter from './Counter';
 
 class CartList extends Component {
+  state = {
+    price: [],
+  };
+
+  componentDidMount() {
+    this.setState({
+      price: store.getState().cart.map(prod => prod.price),
+    });
+  }
+
+  removeProduct(idx) {
+    store.dispatch({
+      type: 'REMOVE_PRODUCT',
+      index: idx,
+    });
+  }
+
   renderMessage() {
     if (store.getState().cart.length === 0) {
       return (
         <h2 className="ui center aligned container">Your Cart is Empty</h2>
       );
     } else {
-      return this.renderCart();
+      return (
+        <div>
+          {this.renderCart()}
+          <div style={{ position: 'absolute', right: '20px' }}>
+            Cart Total:
+            <div>${this.state.price}</div>
+          </div>
+        </div>
+      );
     }
   }
 
@@ -19,10 +45,22 @@ class CartList extends Component {
         <div
           key={idx}
           className="ui raised very padded container segment"
-          style={{ display: 'flex' }}
+          style={{ display: 'flex', position: 'relative' }}
         >
           <img style={{ maxHeight: '100px' }} alt={prod.title} src={prod.img} />
-          <h4>{prod.title}</h4>
+          <div style={{ display: 'block', marginLeft: '10px' }}>
+            <h4>{prod.title}</h4>
+            <h4>Price: ${prod.price}</h4>
+            <button onClick={() => this.removeProduct(idx)}>
+              <i className="x icon" />
+              Remove
+            </button>
+          </div>
+          <Counter id={idx} />
+          <div style={{ position: 'absolute', bottom: '0', right: '20px' }}>
+            Total:
+            <div>${prod.price * store.getState().counter}</div>
+          </div>
         </div>
       );
     });
@@ -31,8 +69,8 @@ class CartList extends Component {
   render() {
     return (
       <div className="ui raised very padded container segment">
-        <h3>Shopping Cart</h3>
-        <div>{this.renderMessage()}</div>
+        <h3 style={{ textDecoration: 'underline' }}>Shopping Cart</h3>
+        {this.renderMessage()}
       </div>
     );
   }

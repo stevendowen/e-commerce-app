@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import store from './store';
 
 class Header extends Component {
-  renderWishlist() {
-    if (store.getState().list.length > 0) {
+  renderWishIcon() {
+    if (store.getState().list.length === 0) {
       return (
         <i className="icons">
           <i className="large shopping bag icon" />
           <i
-            className="red heart icon"
-            style={{ paddingRight: '20px', paddingTop: '3px' }}
+            className="red heart outline icon"
+            style={{ paddingRight: '20px', paddingTop: '4px' }}
           />
         </i>
       );
@@ -20,23 +20,23 @@ class Header extends Component {
         <i className="icons">
           <i className="large shopping bag icon" />
           <i
-            className="red heart outline icon"
-            style={{ paddingRight: '20px', paddingTop: '3px' }}
+            className="red heart icon"
+            style={{ paddingRight: '20px', paddingTop: '4px' }}
           />
         </i>
       );
     }
   }
-  renderShoppingCart() {
-    if (store.getState().cart.length > 0) {
+  renderCartIcon() {
+    if (store.getState().cart.length === 0) {
+      return <i className="large cart icon" />;
+    } else {
       return (
         <i className="icons">
           <i className="large cart icon" />
           <i className="top right corner red circle icon" />
         </i>
       );
-    } else {
-      return <i className="large cart icon" />;
     }
   }
 
@@ -50,10 +50,10 @@ class Header extends Component {
         </Link>
         <div className="right item">
           <Link style={{ marginRight: '10px' }} to="/wishList">
-            {this.renderWishlist()}
+            {this.renderWishIcon()}
           </Link>
           <Link style={{ marginRight: '10px' }} to="/cartList">
-            {this.renderShoppingCart()}
+            {this.renderCartIcon()}
           </Link>
           <div className="ui icon input">
             <input type="text" placeholder="Search..." />

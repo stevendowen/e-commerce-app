@@ -16,11 +16,41 @@ function reducer(state, action) {
       };
     }
     case 'ADD_WISH': {
-      const newWish = [...state.cart];
+      const newWish = [...state.list];
       newWish.push(action.product);
       return {
         ...state,
         list: newWish,
+      };
+    }
+    case 'REMOVE_PRODUCT': {
+      return {
+        ...state,
+        cart: [
+          ...state.cart.slice(0, action.index),
+          ...state.cart.slice(action.index + 1, state.cart.length),
+        ],
+      };
+    }
+    case 'REMOVE_WISH': {
+      return {
+        ...state,
+        list: [
+          ...state.list.slice(0, action.index),
+          ...state.list.slice(action.index + 1, state.list.length),
+        ],
+      };
+    }
+    case 'INCREMENT': {
+      return {
+        ...state,
+        counter: state.counter + action.amount,
+      };
+    }
+    case 'DECREMENT': {
+      return {
+        ...state,
+        counter: state.counter - action.amount,
       };
     }
     default:
@@ -32,6 +62,7 @@ const initialState = {
   products: [],
   cart: [],
   list: [],
+  counter: 1,
 };
 
 const store = createStore(reducer, initialState);

@@ -3,6 +3,20 @@ import React, { Component } from 'react';
 import store from './store';
 
 class WishList extends Component {
+  addProduct(product) {
+    store.dispatch({
+      type: 'ADD_PRODUCT',
+      product: product,
+    });
+  }
+
+  removeWish(index) {
+    store.dispatch({
+      type: 'REMOVE_WISH',
+      index: index,
+    });
+  }
+
   renderMessage() {
     if (store.getState().list.length === 0) {
       return (
@@ -11,20 +25,31 @@ class WishList extends Component {
         </h2>
       );
     } else {
-      return this.renderCart();
+      return this.renderWishList();
     }
   }
 
-  renderCart() {
+  renderWishList() {
     return store.getState().list.map((prod, idx) => {
       return (
         <div
           key={idx}
-          className="ui raised very padded container segment"
+          className="ui raised container segment"
           style={{ display: 'flex' }}
         >
           <img style={{ maxHeight: '100px' }} alt={prod.title} src={prod.img} />
-          <h4>{prod.title}</h4>
+          <div style={{ display: 'block', marginLeft: '10px' }}>
+            <h4>{prod.title}</h4>
+            <h4>Price: ${prod.price}</h4>
+            <button onClick={() => this.addProduct(prod)}>
+              <i className="cart plus icon" />
+              Add To Cart
+            </button>
+            <button onClick={() => this.removeWish(idx)}>
+              <i className="x icon" />
+              Remove
+            </button>
+          </div>
         </div>
       );
     });
@@ -33,7 +58,7 @@ class WishList extends Component {
   render() {
     return (
       <div className="ui raised very padded container segment">
-        <h3>Wish List</h3>
+        <h3 style={{ textDecoration: 'underline' }}>Wish List</h3>
         <div>{this.renderMessage()}</div>
       </div>
     );
