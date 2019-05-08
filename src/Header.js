@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import store from './store';
+import Search from './Search';
 
 class Header extends Component {
   renderWishIcon() {
@@ -56,10 +57,7 @@ class Header extends Component {
           <Link style={{ marginRight: '10px' }} to="/cartList">
             {this.renderCartIcon()}
           </Link>
-          <div className="ui icon input">
-            <input type="text" placeholder="Search..." />
-            <i className="search icon" />
-          </div>
+          <Search />
         </div>
       </div>
     );

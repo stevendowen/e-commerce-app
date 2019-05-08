@@ -33,7 +33,7 @@ class ProductList extends Component {
         </div>
         <div className="content">
           <div className="center aligned header">{product.title}</div>
-          <div className="meta">{product.category.toUpperCase()}</div>
+          <div className="meta">{product.category}</div>
           <button
             className="right floated ui blue mini button"
             onClick={() => this.handleClick(product.id)}
