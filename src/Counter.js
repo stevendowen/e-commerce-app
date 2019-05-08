@@ -1,7 +1,7 @@
 import React from 'react';
 import store from './store';
 
-const Counter = id => {
+const Counter = () => {
   return (
     <div
       style={{
@@ -24,7 +24,7 @@ const Counter = id => {
       >
         <i className="up chevron icon" />
       </button>
-      <div id={id}>{store.getState().counter}</div>
+      <div>{store.getState().counter}</div>
       <button
         onClick={() =>
           store.dispatch({

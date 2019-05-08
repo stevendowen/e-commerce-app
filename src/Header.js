@@ -27,6 +27,7 @@ class Header extends Component {
       );
     }
   }
+
   renderCartIcon() {
     if (store.getState().cart.length === 0) {
       return <i className="large cart icon" />;

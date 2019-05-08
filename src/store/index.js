@@ -7,6 +7,9 @@ function reducer(state, action) {
         ...state,
         products: action.products,
       };
+    case 'SEARCH': {
+      return {};
+    }
     case 'ADD_PRODUCT': {
       const newCart = [...state.cart];
       newCart.push(action.product);

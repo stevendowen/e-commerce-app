@@ -6,6 +6,7 @@ import Counter from './Counter';
 class CartList extends Component {
   state = {
     price: [],
+    total: 0,
   };
 
   componentDidMount() {
@@ -19,6 +20,18 @@ class CartList extends Component {
       type: 'REMOVE_PRODUCT',
       index: idx,
     });
+    this.setState({
+      price: [
+        ...this.state.price.slice(0, idx),
+        ...this.state.price.slice(idx + 1, this.state.price.length),
+      ],
+    });
+  }
+
+  showTotal() {
+    return this.setState({
+      total: this.state.price.reduce((a, b) => a + b),
+    });
   }
 
   renderMessage() {
@@ -31,8 +44,8 @@ class CartList extends Component {
         <div>
           {this.renderCart()}
           <div style={{ position: 'absolute', right: '20px' }}>
-            Cart Total:
-            <div>${this.state.price}</div>
+            <button onClick={() => this.showTotal()}>Update</button>
+            Cart Total: ${this.state.total}
           </div>
         </div>
       );
@@ -44,7 +57,7 @@ class CartList extends Component {
       return (
         <div
           key={idx}
-          className="ui raised very padded container segment"
+          className="ui raised container segment"
           style={{ display: 'flex', position: 'relative' }}
         >
           <img style={{ maxHeight: '100px' }} alt={prod.title} src={prod.img} />
@@ -56,7 +69,7 @@ class CartList extends Component {
               Remove
             </button>
           </div>
-          <Counter id={idx} />
+          <Counter />
           <div style={{ position: 'absolute', bottom: '0', right: '20px' }}>
             Total:
             <div>${prod.price * store.getState().counter}</div>

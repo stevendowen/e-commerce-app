@@ -44,9 +44,18 @@ class ProductDetail extends Component {
             {prod.category.toUpperCase()}
           </div>
           <div className="ui centered segment">
-            <div className="description">Description: {prod.description}</div>
-            <div>Price: {prod.price}</div>
-            <div className="right floated">Rating: {prod.rating}</div>
+            <div style={{ fontWeight: 'bold' }}>Description: </div>
+            <span>{prod.description} </span>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>Price: </span>
+                <span>${prod.price}</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: 'bold' }}>Rating: </span>
+                <span style={{ fontWeight: 'bold' }}>{prod.rating}</span>
+              </div>
+            </div>
           </div>
           <div className="extra content">
             <button
