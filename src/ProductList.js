@@ -32,7 +32,7 @@ class ProductList extends Component {
       <div className="ui raised link card" key={idx}>
         <div className="ui centered images">
           <img
-            style={{ maxHeight: '175px' }}
+            style={{ maxHeight: '175px', padding: '15px' }}
             alt={product.title}
             src={product.img}
           />

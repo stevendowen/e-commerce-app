@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <Router>
         <Header />
-        <div className="ui centered cards">
+        <div className="ui centered cards" style={{ marginBottom: '50px' }}>
           <Switch>
             <Route exact path="/" component={ProductList} />
             <Route path="/products/:id" component={ProductDetail} />
