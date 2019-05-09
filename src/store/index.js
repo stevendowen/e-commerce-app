@@ -8,8 +8,6 @@ function reducer(state, action) {
         products: action.products,
       };
     case 'SEARCH': {
-      // const categories = state.products.map(prod => prod.category);
-      console.log(action.value);
       return {
         ...state,
         search: action.value,
@@ -95,7 +93,6 @@ const initialState = {
   search: '',
   cart: [],
   list: [],
-  counter: 1,
 };
 
 const store = createStore(reducer, initialState);

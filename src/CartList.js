@@ -4,27 +4,10 @@ import store from './store';
 import Counter from './Counter';
 
 class CartList extends Component {
-  state = {
-    price: [],
-    total: 0,
-  };
-
-  componentDidMount() {
-    this.setState({
-      price: store.getState().cart.map(prod => prod.price),
-    });
-  }
-
   removeProduct(idx) {
     store.dispatch({
       type: 'REMOVE_PRODUCT',
       index: idx,
-    });
-    this.setState({
-      price: [
-        ...this.state.price.slice(0, idx),
-        ...this.state.price.slice(idx + 1, this.state.price.length),
-      ],
     });
   }
 
@@ -49,9 +32,12 @@ class CartList extends Component {
             style={{
               position: 'absolute',
               right: '20px',
+              bottom: '18px',
               display: 'flex',
               alignItems: 'center',
               flexDirection: 'column',
+              fontWeight: 'bold',
+              fontSize: '1.28571429rem',
             }}
           >
             Cart Total: ${this.getTotal()}
@@ -62,7 +48,9 @@ class CartList extends Component {
   }
 
   renderCart() {
+    let total = 0;
     return store.getState().cart.map((prod, idx) => {
+      total += prod.price * prod.qty;
       return (
         <div
           key={idx}
@@ -79,8 +67,8 @@ class CartList extends Component {
             </button>
           </div>
           <Counter qty={prod.qty} id={prod.id} />
-          <div style={{ position: 'absolute', bottom: '0', right: '20px' }}>
-            Total: ${prod.price * store.getState().counter}
+          <div style={{ position: 'absolute', bottom: '5px', right: '20px' }}>
+            Total: ${total.toFixed(2)}
           </div>
         </div>
       );

@@ -21,17 +21,15 @@ class Search extends Component {
   };
   render() {
     return (
-      <div className="ui icon input">
-        <form onSubmit={this.saveChange}>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <i className="search icon" />
-        </form>
-      </div>
+      <form className="ui icon input" onSubmit={this.saveChange}>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <i className="search icon" />
+      </form>
     );
   }
 }

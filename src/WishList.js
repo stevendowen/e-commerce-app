@@ -45,7 +45,10 @@ class WishList extends Component {
               <i className="cart plus icon" />
               Add To Cart
             </button>
-            <button onClick={() => this.removeWish(idx)}>
+            <button
+              onClick={() => this.removeWish(idx)}
+              style={{ marginLeft: '22px' }}
+            >
               <i className="x icon" />
               Remove
             </button>

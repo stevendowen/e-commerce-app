@@ -22,11 +22,12 @@ class ProductList extends Component {
   }
 
   render() {
-    console.log(store.getState());
     let products = store.getState().products;
     let search = store.getState().search;
     if (search !== '') {
-      products = products.filter(p => p.category === search);
+      products = products.filter(p => {
+        return p.category === search || p.category.indexOf(search) !== -1;
+      });
     }
     return products.map((product, idx) => (
       <div className="ui raised link card" key={idx}>
@@ -39,7 +40,7 @@ class ProductList extends Component {
         </div>
         <div className="content">
           <div className="center aligned header">{product.title}</div>
-          <div className="meta">{product.category}</div>
+          <div className="meta">{product.category.toUpperCase()}</div>
           <button
             className="right floated ui blue mini button"
             onClick={() => this.handleClick(product.id)}
