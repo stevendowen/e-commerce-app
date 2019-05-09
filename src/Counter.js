@@ -1,7 +1,7 @@
 import React from 'react';
 import store from './store';
 
-const Counter = () => {
+const Counter = props => {
   return (
     <div
       style={{
@@ -18,17 +18,19 @@ const Counter = () => {
         onClick={() =>
           store.dispatch({
             type: 'INCREMENT',
+            id: props.id,
             amount: 1,
           })
         }
       >
         <i className="up chevron icon" />
       </button>
-      <div>{store.getState().counter}</div>
+      <div>{props.qty}</div>
       <button
         onClick={() =>
           store.dispatch({
             type: 'DECREMENT',
+            id: props.id,
             amount: 1,
           })
         }

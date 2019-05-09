@@ -22,7 +22,13 @@ class ProductList extends Component {
   }
 
   render() {
-    return store.getState().products.map((product, idx) => (
+    console.log(store.getState());
+    let products = store.getState().products;
+    let search = store.getState().search;
+    if (search !== '') {
+      products = products.filter(p => p.category === search);
+    }
+    return products.map((product, idx) => (
       <div className="ui raised link card" key={idx}>
         <div className="ui centered images">
           <img

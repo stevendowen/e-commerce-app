@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="ui inverted footer segment">
-      <span className=" ">Powered By Steven</span>
+    <div id="footer">
+      <span className="right floated item">Powered By Steven</span>
     </div>
   );
 };

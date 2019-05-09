@@ -8,21 +8,32 @@ function reducer(state, action) {
         products: action.products,
       };
     case 'SEARCH': {
-      console.log(state.products.map(prod => prod.category));
       // const categories = state.products.map(prod => prod.category);
       console.log(action.value);
       return {
         ...state,
-        products: state.products.map(prod => prod),
+        search: action.value,
       };
     }
     case 'ADD_PRODUCT': {
+      const idx = state.cart.findIndex(p => {
+        return p.id === action.product.id;
+      });
       const newCart = [...state.cart];
-      newCart.push(action.product);
-      return {
-        ...state,
-        cart: newCart,
-      };
+      if (idx === -1) {
+        action.product.qty = 1;
+        newCart.push(action.product);
+        return {
+          ...state,
+          cart: newCart,
+        };
+      } else {
+        newCart[idx].qty += 1;
+        return {
+          ...state,
+          cart: newCart,
+        };
+      }
     }
     case 'ADD_WISH': {
       const newWish = [...state.list];
@@ -51,15 +62,27 @@ function reducer(state, action) {
       };
     }
     case 'INCREMENT': {
+      const newCart = [...state.cart];
+      const idx = state.cart.findIndex(p => {
+        return p.id === action.id;
+      });
+      newCart[idx].qty += action.amount;
       return {
         ...state,
-        counter: state.counter + action.amount,
+        cart: newCart,
       };
     }
     case 'DECREMENT': {
+      const newCart = [...state.cart];
+      const idx = state.cart.findIndex(p => {
+        return p.id === action.id;
+      });
+      if (state.cart[idx].qty > 0) {
+        newCart[idx].qty -= action.amount;
+      }
       return {
         ...state,
-        counter: state.counter - action.amount,
+        cart: newCart,
       };
     }
     default:
@@ -69,7 +92,7 @@ function reducer(state, action) {
 
 const initialState = {
   products: [],
-  search: [],
+  search: '',
   cart: [],
   list: [],
   counter: 1,

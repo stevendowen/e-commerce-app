@@ -28,10 +28,12 @@ class CartList extends Component {
     });
   }
 
-  showTotal() {
-    return this.setState({
-      total: this.state.price.reduce((a, b) => a + b),
+  getTotal() {
+    let total = 0;
+    store.getState().cart.forEach(p => {
+      total += p.qty * p.price;
     });
+    return total.toFixed(2);
   }
 
   renderMessage() {
@@ -52,8 +54,7 @@ class CartList extends Component {
               flexDirection: 'column',
             }}
           >
-            <button onClick={() => this.showTotal()}>Update</button>
-            Cart Total: ${this.state.total}
+            Cart Total: ${this.getTotal()}
           </div>
         </div>
       );
@@ -77,7 +78,7 @@ class CartList extends Component {
               Remove
             </button>
           </div>
-          <Counter />
+          <Counter qty={prod.qty} id={prod.id} />
           <div style={{ position: 'absolute', bottom: '0', right: '20px' }}>
             Total: ${prod.price * store.getState().counter}
           </div>
