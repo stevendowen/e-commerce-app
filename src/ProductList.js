@@ -50,7 +50,7 @@ class ProductList extends Component {
         </div>
         <div className="extra content">
           <button
-            className="right floated star"
+            className="right floated heart"
             onClick={() => this.addWish(product)}
           >
             <i className="heart icon" />

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import store from './store';
 import Counter from './Counter';
@@ -32,15 +33,28 @@ class CartList extends Component {
             style={{
               position: 'absolute',
               right: '20px',
-              bottom: '18px',
+              bottom: '10px',
               display: 'flex',
-              alignItems: 'center',
-              flexDirection: 'column',
-              fontWeight: 'bold',
-              fontSize: '1.28571429rem',
             }}
           >
-            Cart Total: ${this.getTotal()}
+            <Link to="/checkout">
+              <button
+                className="ui green small button"
+                style={{ marginRight: '5px' }}
+              >
+                <i className="credit card icon" />
+                Checkout
+              </button>
+            </Link>
+            <div
+              style={{
+                fontWeight: 'bold',
+                fontSize: '1.28571429rem',
+                marginTop: '7px',
+              }}
+            >
+              Cart Total: ${this.getTotal()}
+            </div>
           </div>
         </div>
       );
@@ -48,9 +62,7 @@ class CartList extends Component {
   }
 
   renderCart() {
-    let total = 0;
     return store.getState().cart.map((prod, idx) => {
-      total += prod.price * prod.qty;
       return (
         <div
           key={idx}
@@ -67,9 +79,6 @@ class CartList extends Component {
             </button>
           </div>
           <Counter qty={prod.qty} id={prod.id} />
-          <div style={{ position: 'absolute', bottom: '5px', right: '20px' }}>
-            Total: ${total.toFixed(2)}
-          </div>
         </div>
       );
     });

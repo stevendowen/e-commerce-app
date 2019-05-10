@@ -7,6 +7,7 @@ import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
 import CartList from './CartList';
 import WishList from './WishList';
+import Checkout from './Checkout';
 import Footer from './Footer';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route path="/products/:id" component={ProductDetail} />
             <Route path="/cartList" component={CartList} />
             <Route path="/wishList" component={WishList} />
+            <Route path="/checkout" component={Checkout} />
           </Switch>
         </div>
         <Footer />
