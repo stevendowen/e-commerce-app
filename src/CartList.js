@@ -20,6 +20,13 @@ class CartList extends Component {
     return total.toFixed(2);
   }
 
+  emptyCart(product) {
+    store.dispatch({
+      type: 'EMPTY_CART',
+      product: product,
+    });
+  }
+
   renderMessage() {
     if (store.getState().cart.length === 0) {
       return (
@@ -41,6 +48,7 @@ class CartList extends Component {
               <button
                 className="ui green small button"
                 style={{ marginRight: '5px' }}
+                onClick={() => this.emptyCart()}
               >
                 <i className="credit card icon" />
                 Checkout
